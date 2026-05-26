@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://unpkg.com/kekule/dist/kekule.js?modules=chemWidget"></script>
+  <script src="https://unpkg.com/kekule/dist/kekule.js"></script>
   <link rel="stylesheet"
         href="https://unpkg.com/kekule/dist/themes/default/kekule.css">
 </head>
@@ -14,7 +14,6 @@
 
 <script>
   // Create molecule from SMILES
-  Kekule.Indigo.enable();
   let mol = Kekule.IO.loadFormatData('CCC', 'smi');
 
   // Add explicit hydrogens
