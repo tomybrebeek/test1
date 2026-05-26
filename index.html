@@ -30,22 +30,21 @@
     document.getElementById('drawBtn').addEventListener('click', () => {
       const smiles = document.getElementById('smilesInput').value;
       const container = document.getElementById('structure');
+      
       // Clear previous diagram
       container.innerHTML = '';
 
-      // Create a Kekule Renderer
-      const renderer = new Kekule.Render.Html5CanvasRenderer(container, {width: 600, height: 400});
-      
+      // Create a Kekule ChemWidget Viewer's container
+      const viewer = new Kekule.ChemWidget.Viewer(container, {
+        width: 600,
+        height: 400
+      });
+
       // Parse the SMILES string
       const mol = Kekule.IO.loadFormatData(smiles, 'smi');
-      
-      // Create a Kekule.StructureFragment for display
-      const structure = new Kekule.StructureFragment();
-      structure.append(mol);
-      
-      // Render the molecule
-      renderer.setChemObj(mol);
-      renderer.draw();
+
+      // Load the molecule into the viewer
+      viewer.setChemObject(mol);
     });
   </script>
 </body>
