@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "kekule": "^1.0.3"
+  }
+}
