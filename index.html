@@ -34,18 +34,18 @@
       // Clear previous diagram
       container.innerHTML = '';
 
-      // Create a Kekule ChemWidget Viewer's container
+      // Create viewer
       const viewer = new Kekule.ChemWidget.Viewer(container, {
         width: 600,
         height: 400
       });
 
-      // Load molecule asynchronously
-      Kekule.IO.loadFormatData(smiles, 'smi').then(mol => {
-        // Set the molecule into the viewer
+      // Load molecule from SMILES
+      Kekule.IO.loadFormatData(smiles, 'smi', null, (mol) => {
+        // Set molecule to viewer
         viewer.setChemObject(mol);
-      }).catch(error => {
-        alert('Error parsing SMILES: ' + error);
+      }, (error) => {
+        alert('Error loading molecule: ' + error);
       });
     });
   </script>
