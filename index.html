@@ -12,17 +12,17 @@
 
 <script>
   // Initialize Kekule Structure Viewer
-  const viewer = new Kekule.ChemWidget.Viewer(document.getElementById('structure'), { 
-    // options
+  const viewer = new Kekule.ChemWidget.Viewer(document.getElementById('structure'), {
+    // optional configuration
   });
-  
+
   // Example SMILES string for Ethanol
   const smiles = 'CCO';
 
-  // Convert SMILES to structure
+  // Parse SMILES into a Kekule molecule object
   const mol = Kekule.IO.loadFormatData(smiles, 'smiles');
 
-  // Display molecule
+  // Set the molecule object into the viewer
   viewer.setChemObj(mol);
 </script>
 </body>
