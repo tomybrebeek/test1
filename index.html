@@ -1,53 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>SMILES Structure Viewer</title>
-  <!-- Include Kekule.js library -->
-  <script src="https://unpkg.com/kekule/dist/kekule.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #structure {
-      border: 1px solid #ccc;
-      width: 600px;
-      height: 400px;
-      margin-top: 20px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Organic Molecule Generator</title>
+<script src="https://unpkg.com/kekule/dist/kekule.js"></script>
 </head>
 <body>
-  <h1>SMILES Structure Viewer</h1>
-  <label for="smilesInput">Enter SMILES string:</label>
-  <input type="text" id="smilesInput" value="CC" size="20" />
-  <button id="drawBtn">Draw Structure</button>
+<h1>Organic Molecule</h1>
+<div id="structure" style="width: 400px; height: 400px; border: 1px solid #ccc;"></div>
 
-  <div id="structure"></div>
+<script>
+  // Initialize Kekule Structure Viewer
+  const viewer = new Kekule.ChemWidget.Viewer(document.getElementById('structure'), { 
+    // options
+  });
+  
+  // Example SMILES string for Ethanol
+  const smiles = 'CCO';
 
-  <script>
-    document.getElementById('drawBtn').addEventListener('click', () => {
-      const smiles = document.getElementById('smilesInput').value;
-      const container = document.getElementById('structure');
-      
-      // Clear previous diagram
-      container.innerHTML = '';
+  // Convert SMILES to structure
+  const mol = Kekule.IO.loadFormatData(smiles, 'smiles');
 
-      // Create viewer
-      const viewer = new Kekule.ChemWidget.Viewer(container, {
-        width: 600,
-        height: 400
-      });
-
-      // Load molecule from SMILES
-      Kekule.IO.loadFormatData(smiles, 'smi', null, (mol) => {
-        // Set molecule to viewer
-        viewer.setChemObject(mol);
-      }, (error) => {
-        alert('Error loading molecule: ' + error);
-      });
-    });
-  </script>
+  // Display molecule
+  viewer.setChemObj(mol);
+</script>
 </body>
 </html>
