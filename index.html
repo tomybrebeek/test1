@@ -40,11 +40,13 @@
         height: 400
       });
 
-      // Parse the SMILES string
-      const mol = Kekule.IO.loadFormatData(smiles, 'smi');
-
-      // Load the molecule into the viewer
-      viewer.setChemObject(mol);
+      // Load molecule asynchronously
+      Kekule.IO.loadFormatData(smiles, 'smi').then(mol => {
+        // Set the molecule into the viewer
+        viewer.setChemObject(mol);
+      }).catch(error => {
+        alert('Error parsing SMILES: ' + error);
+      });
     });
   </script>
 </body>
